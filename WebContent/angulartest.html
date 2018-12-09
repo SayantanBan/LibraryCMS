@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script><meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script>
+
+/*
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) 
+{
+    $scope.firstname = "John";
+    $scope.lastname = "Doe";    
+});
+
+*/
+
+var app = angular
+			.module('employee', [])
+			.controller('employeetable', function($scope) 
+			{
+   				 var EMP=[
+					    	{fname:"ben",lname:"paul",gender:"male"},
+					    	{fname:"shreya",lname:"biswas",gender:"female"},
+					    	{fname:"tom",lname:"jones",gender:"male"}
+			    	    ];
+				$scope.EMP=EMP;
+				$scope.sortColumn="fname";
+			});
+		
+/*			
+var app = angular
+.module('post', [])
+.controller('postController', function($scope) 
+{
+		 var posts=[
+		    	{fname:"ben",likes:0},
+		    	{fname:"shreya",likes:0},
+		    	{fname:"tom",likes:0}
+    	    ];
+	$scope.posts=posts;
+	$scope.likes=function (posts)
+	{
+		posts.likes++;
+	};
+	
+});
+*/
+
+
+
+
+
+</script>
+<body>
+
+
+<!-- 
+<div ng-app="">
+	{{2+3}}
+	<br>
+	{{1==2}}
+	<br>
+	{{{name:'David',age:'30'}.name}}
+	<br>
+	{{['David','Pam','Sara'][2]}}
+	<br>
+</div>
+
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <p>First Name:{{firstname}}</p>
+    <p>Last Name:{{lastname}}</p>
+</div>
+
+
+ 
+<div ng-app="" ng-init="myCol='lightblue'">
+	<input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+</div>
+
+
+
+<div ng-app="" ng-init="firstName='John';lastName='Doe'">
+	<p>The full name is: {{ firstName + " " + lastName }}</p>
+</div>
+
+
+
+ Two way DataBinding
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    Name: <input ng-model="firstname">
+    <h1>{{firstname}}</h1>
+</div>
+
+
+
+<div  ng-app="employee" ng-controller="employeetable">
+	<table>
+		<thead>
+			<tr>
+				<th>firstname</th>
+				<th>lastname</th>
+				<th>gender</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="emp in EMP" >
+				<td>{{emp.fname}}</td>
+				<td>{{emp.lname}}</td>
+				<td>{{emp.gender}}</td>
+			</tr>
+		</tbody>		
+	</table>
+</div>
+
+<!-- 
+
+<div  ng-app="post" ng-controller="postController">
+	<table>
+		<thead>
+			<tr>
+				<th>firstname</th>
+				<th>likes</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="post in posts">
+				<td>{{post.fname}}</td>
+				<td>{{post.likes}}</td>
+				<td>
+				 	<input type="button" value="LIKE" ng-click="likes(post)">
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+</div>
+
+
+
+
+FILTERS
+-->
+
+
+<div  ng-app="employee" ng-controller="employeetable">
+	Order By:
+	<select ng-model="sortColumn">
+		<option value="fname">Name Acs</option>
+		<option value="-fname">Name Dec</option>
+		</select>
+	<table>
+		<thead>
+			<tr>
+				<th>firstname</th>
+				<th>lastname</th>
+				<th>gender</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="emp in EMP |orderBy:sortColumn">
+				<td>{{emp.fname}}</td>
+				<td>{{emp.lname}}</td>
+				<td>{{emp.gender}}</td>
+			</tr>
+		</tbody>		
+	</table>
+</div>
+
+
+
+
+
+</body>
+</html>
